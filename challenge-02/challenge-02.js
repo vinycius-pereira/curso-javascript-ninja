@@ -41,12 +41,25 @@ Crie uma função com as seguintes características:
     Preencha todos os valores corretamente!
 3. O retorno da função deve ser a multiplicação dos 3 argumentos, somando `2` ao resultado da multiplicação.
 */
+
+/*minha função e a dele são a mesma*/
 function varios(x,y,z){
   if(x === undefined || y === undefined || z === undefined ){
     return console.log('Preencha todos os valores corretamente!');
   }
-  return console.log((x*y*z) + 2);
+  return console.log('Resolução do instrutor:',(x*y*z) + 2);
 }
+/*eu poderia alterar para um condição mais limpa*/
+function varios1(x,y,z){
+  if(!x || !y || !z){
+    return console.log('Preencha todos os valores corretamente!');
+  }
+  return console.log('Minha resolução simplificada:',(x*y*z) + 2);
+}
+varios(5,5,5); // resolução do instrutor
+varios1(5,5,5);// minha resolução fora da condição
+varios1(5,5);// minha resolução entrando na condição
+
 // Invoque a função criada acima, passando só dois números como argumento.
 varios(1,2);
 
