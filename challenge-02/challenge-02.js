@@ -71,13 +71,13 @@ Crie uma função com as seguintes características:
 6. E ainda, se nenhuma das condições acima forem atendidas, retorne `null`.
 */
 function variosOutros(x,y,z) {
-  if (x !== undefined && y === undefined && z === undefined){
+  if (x && !y && !z){
     return x;
-  } else if ((x !== undefined && y !== undefined) && z === undefined){
+  } else if ((x && y ) && !z){
     return x+y;
-  } else if (x !== undefined && y !== undefined && z !== undefined ){
+  } else if (x && y && z ){
     return (x+y)/z;
-  } else if (x === undefined || y === undefined || z === undefined ){
+  } else if (!x || !y || !z){
     return false;
   }
   return null;
