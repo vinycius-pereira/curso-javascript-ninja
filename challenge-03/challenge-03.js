@@ -179,17 +179,18 @@ método), que será concatenada com a frase de retorno, mostrando a resposta
 correta, de acordo com os dados inseridos no objeto.
 */
 pessoa.apresentacao = function () {
+  var sexo = 'o';
+  var idade = 'anos';
+  var distancia = 'metros';
+
   if(pessoa.sexo === 'F'){
-    var feminino = 'Olá, eu sou a ' + pessoa.nomeCompleto() + ', tenho ' + pessoa.idade + ' anos, ' + pessoa.altura + ' , meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' metros!';
-    return feminino
+    sexo = 'a'
   } else if(pessoa.idade === 1){
-    var recemNascido = 'Olá, eu sou o ' + pessoa.nomeCompleto() + ', tenho ' + pessoa.idade + ' ano, ' + pessoa.altura + ' , meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' metros!';
-    return recemNascido;
+    idade = 'ano'
   } else if(pessoa.caminhouQuantosMetros === 1){
-    var andaPouco =  'Olá, eu sou o ' + pessoa.nomeCompleto() + ', tenho ' + pessoa.idade + ' anos, ' + pessoa.altura + ' , meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' metro!';
-    return andaPouco;
+    distancia = 'metro';
   }
-  return 'Olá, eu sou o ' + pessoa.nomeCompleto() + ', tenho ' + pessoa.idade + ' anos, ' + pessoa.altura + ' , meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' metros!';
+  return 'Olá, eu sou ' + sexo + ' ' + pessoa.nomeCompleto() + ', tenho ' + pessoa.idade + ' ' + idade + ' ' + pessoa.altura + ' , meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' ' + distancia + ' !';
 }
 // Agora, apresente-se ;)
 console.log(pessoa.apresentacao()); // retorna metodo pulando as condições
