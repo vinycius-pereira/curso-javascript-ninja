@@ -6,9 +6,11 @@ um único parâmetro como argumento. Essa função deve retornar `true` se o
 equivalente booleano para o valor passado no argumento for `true`, ou `false`
 para o contrário.
 */
+
+// sempre que declara uma var finalize com ';'
 var isTruthy = function (x) {
   return !!x;
-}
+};
 
 
 // Invoque a função criada acima, passando todos os tipos de valores `falsy`.
@@ -61,8 +63,10 @@ var carro = {
 Crie um método chamado `mudarCor` que mude a cor do carro conforme a cor
 passado por parâmetro.
 */
-carro.mudarCor = function (Trocacor) {
-  return carro.cor = Trocacor;
+
+//ajuste para camelCase
+carro.mudarCor = function (trocaCor) {
+  return carro.cor = trocaCor;
 }
 console.log(carro.cor);
 carro.mudarCor('Azul');
@@ -93,8 +97,15 @@ Crie um método chamado `obterMarcaModelo`, que retorne:
 "Esse carro é um [MARCA] [MODELO]"
 Para retornar os valores de marca e modelo, utilize os métodos criados.
 */
+
+/*
+  alterado para os métodos criados acima
+
+  - para tratar propriedades de objetos, é preferível usar
+    métodos que lidam com este tratamento
+*/
 carro.obterMarcaModelo = function () {
-  return "Esse carro é um " + carro.marca + " " + carro.modelo;
+  return "Esse carro é um " + carro.obterMarca() + " " + carro.obterModelo();
 }
 console.log(carro.obterMarcaModelo());
 /*
@@ -116,17 +127,18 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 citado acima, no lugar de "pessoas".
 */
 carro.pessoasCarro = function (entraPessoasCarro) {
-  carro.quantidadePessoas+=entraPessoasCarro;
-  var pessoasQueCabem = 5 - carro.quantidadePessoas;
+  var totalPessoas = carro.quantidadePessoas + entraPessoasCarro;
 
-  if (pessoasQueCabem === 1){
-    return "Só cabem mais " + pessoasQueCabem + " pessoa!" // alterado "pessoas" para "pessoa"
-  } else if(entraPessoasCarro > pessoasQueCabem && carro.quantidadePessoas <= 5){
-    return "Só cabem mais " + pessoasQueCabem + " pessoas!"
-  } else if(carro.quantidadePessoas >= pessoasQueCabem) {
+  if(totalPessoas > carro.assentos){ // as condições agora fazem uso do atributo assento do objeto carro, ao invés de feito na mão com o numero 5
+    var pessoasQueCabem = carro.assentos - carro.quantidadePessoas;
+    var umaOuMaisPessoas = pessoasQueCabem === 1 ? "pessoa" : "pessoas";
+    return "Só cabem mais " + pessoasQueCabem + " " + umaOuMaisPessoas + "!";
+  }
+  else if(carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos) {
     return "O carro já está lotado!"
   }
-  return "Já temos " + entraPessoasCarro + " pessoas no carro!";
+  carro.quantidadePessoas+=entraPessoasCarro; // atribuição após as verificações
+  return "Já temos " + carro.quantidadePessoas + " pessoas no carro!";
 }
 
 /*
@@ -152,23 +164,24 @@ console.log(carro.mudarCor("verde musgo"));
 console.log(carro.obterCor()); // verde musgo
 
 // Qual a marca e modelo do carro?
-console.log(carro.obterMarca()); // Fiat
+// ajuste para marca E model
+console.log(carro.obterMarcaModelo()); // Fiat
 
 // Adicione 2 pessoas no carro.
-console.log(carro.pessoasCarro(2));
+console.log(carro.pessoasCarro(2)); // Já temos 2 pessoas no carro!
 // Adicione mais 4 pessoas no carro.
-console.log(carro.pessoasCarro(4));
+console.log(carro.pessoasCarro(4)); // Só cabem mais 3 pessoas!
 
 // Faça o carro encher.
-console.log(carro.quantidadePessoas); //carro já esta lotado
+console.log(carro.pessoasCarro(3)); //Já temos 5 pessoas no carro!
 
 
 // Tire 4 pessoas do carro.
-carro.quantidadePessoas -= 4;
+console.log(carro.pessoasCarro(-4)); //Já temos 1 pessoas no carro!
 
 
 // Adicione 10 pessoas no carro.
-console.log(carro.pessoasCarro(10));
+console.log(carro.pessoasCarro(10));//Só cabem mais 4 pessoas!
 
 // Quantas pessoas temos no carro?
-console.log(carro.quantidadePessoas);
+console.log(carro.quantidadePessoas); // 1
