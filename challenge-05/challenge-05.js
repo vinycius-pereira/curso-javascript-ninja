@@ -88,6 +88,7 @@ usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
 console.log("O livro " + book('coraline').nome + " tem " + book('coraline').quantidadePaginas + " páginas!")
+//
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
