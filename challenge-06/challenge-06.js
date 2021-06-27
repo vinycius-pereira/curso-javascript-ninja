@@ -79,38 +79,35 @@ function convertToHex(cor){
   switch (cor) {
       case 'vermelho':
         hex = '#FF0000';
-        console.log('O hexadecimal para a cor ' + cor + ' é ' + hex + '.')
       break;
       case 'verde':
         hex = '#008000';
-        console.log('O hexadecimal para a cor ' + cor + ' é ' + hex + '.')
       break;
       case 'azul':
         hex = '#0000FF';
-        console.log('O hexadecimal para a cor ' + cor + ' é ' + hex + '.')
       break;
       case 'amarelo':
         hex = '#FFFF00';
-        console.log('O hexadecimal para a cor ' + cor + ' é ' + hex + '.')
       break;
       case 'rosa':
         hex = '#FFCBDB';
-        console.log('O hexadecimal para a cor ' + cor + ' é ' + hex + '.')
       break;
     default:
-      console.log('Não temos o equivalente hexadecimal para ' + cor + '.')
+      return 'Não temos o equivalente hexadecimal para ' + cor + '.';
   }
+  return 'O hexadecimal para a cor ' + cor + ' é ' + hex + '.';
 }
 
 /*
 Tente mostrar o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
 
-convertToHex('rosa');
-convertToHex('verde');
-convertToHex('amarelo');
-convertToHex('vermelho');
-convertToHex('azul');
-convertToHex('preto');
-convertToHex('branca');
-convertToHex('turquesa');
+console.log(convertToHex('rosa'));
+console.log(convertToHex('verde'));
+console.log(convertToHex('vermelho'));
+console.log(convertToHex('amarelo'));
+console.log(convertToHex('azul'));
+console.log(convertToHex('preto'));
+console.log(convertToHex('branca'));
+console.log(convertToHex('turquesa'));
+
