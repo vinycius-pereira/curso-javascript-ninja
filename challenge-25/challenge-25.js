@@ -27,33 +27,36 @@ desafio os experimentos legais que você conseguir desenvolver :D
     return doc.querySelector(e)
   }
 
-  var buttonOn = getElements('[data-js="buttonOn"]');
-  var buttonOff = getElements('[data-js="buttonOff"]');
-  var title = getElements('[data-js="title"]')
-  var body = getElements('.body')
+  var $buttonOn = getElements('[data-js="buttonOn"]');
+  var $buttonOff = getElements('[data-js="buttonOff"]');
+  var $title = getElements('[data-js="title"]')
+  var $body = getElements('.body')
+  var  setOnorOff  = true;
 
   function initialize(){
     initEvents()
   }
 
   function initEvents() {
-    buttonOn.addEventListener('click',turnOn,false)
-    buttonOff.addEventListener('click',turnOff,false)
+    $buttonOn.addEventListener('click',turnOn,false)
+    $buttonOff.addEventListener('click',turnOff,false)
   }
 
   function getElementColor(bodyColor,titleColor){
-    body.style.backgroundColor = bodyColor
-    title.style.color = titleColor
+    $body.style.backgroundColor = bodyColor
+    $title.style.color = titleColor
   }
 
   function turnOn() {
-    if(body.style.backgroundColor === 'white')
+    if(setOnorOff)
       win.alert('It\'s already on');
+    setOnorOff = true
     getElementColor('white','black')
   }
   function turnOff() {
-    if(body.style.backgroundColor === 'black')
+    if(!setOnorOff)
       win.alert('It\'s already off');
+    setOnorOff = false
     getElementColor('black','white')
   }
 
