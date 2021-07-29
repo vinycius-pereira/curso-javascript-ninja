@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    table, th, td {
+      padding: 5px;
+      border: 1px solid black;
+    }
+    img{
+      width: 150px;
+      height: auto;
+    }
+    table {
+      float: right;
+      margin: 8px;
+      border-spacing: 15px;
+      border-collapse: collapse;
+    }
+    form{
+      float: left;
+    }
+    h3 {
+      text-align: center;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>Vrum Vrum</title>
+</head>
+<body>
+<h3>
+  <span data-js="company-name"></span>
+  <span data-js="company-phone"></span>
+</h3>
+<form data-js="register-car">
+  <ul>
+    <li>
+      <label>Imagem do carro: </label>
+      <input data-js="image" type="url"/>
+    </li>
+    <li>
+      <label>Marca/Modelo:
+        <input data-js="brand-model" type="text"/>
+      </label>
+    </li>
+    <li>
+      <label>Ano:
+        <input data-js="year" type="text"/>
+      </label>
+    </li>
+    <li>
+      <label>Placa: </label>
+      <input data-js="plate" type="text"/>
+    </li>
+    <li>
+      <label>Cor: </label>
+      <input data-js="color" type="text"/>
+    </li>
+      <button type="submit">Cadastrar</button>
+  </ul>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Imagem do carro</th>
+      <th>Marca/Modelo</th>
+      <th>Ano</th>
+      <th>Placa</th>
+      <th>Cor</th>
+    </tr>
+  </thead>
+
+  <tbody data-js="table-body"></tbody>
+</table>
+
+<script src="libDOM.js"></script>
+<script src="challenge-29.js"></script>
+</body>
+</html>

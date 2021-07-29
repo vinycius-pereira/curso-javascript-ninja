@@ -1,4 +1,4 @@
-(function() {
+(function (win, doc, DOM) {
   'use strict';
 
   /*
@@ -36,4 +36,64 @@
   que será nomeado de "app".
   */
 
-})();
+
+  var $companyName = new DOM('[data-js="company-name"]').get();
+  var $companyPhone = new DOM('[data-js="company-phone"]').get();
+
+
+
+  var $tableCar = new DOM('[data-js="table-body"]').get();
+
+
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', 'company.json', true);
+  ajax.send();
+  ajax.addEventListener('readystatechange', getCompanyInfo, false);
+
+  function handleEvents() {
+    new DOM('[data-js="register-car"]').on('submit', handleSubmit, false);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    $tableCar.appendChild(createNewCar())
+  }
+
+  function createNewCar() {
+
+    var $fragment = doc.createDocumentFragment();
+    var $tr = doc.createElement('tr');
+    var $tdImage = doc.createElement('td');
+    var $image = doc.createElement('img');
+    var $tdBrand = doc.createElement('td');
+    var $tdYear = doc.createElement('td');
+    var $tdPlate = doc.createElement('td');
+    var $tdColor = doc.createElement('td');
+
+    $image.src = new DOM('[data-js="image"]').get().value
+    $tdBrand.textContent = new DOM('[data-js="brand-model"]').get().value
+    $tdYear.textContent = new DOM('[data-js="year"]').get().value
+    $tdPlate.textContent = new DOM('[data-js="plate"]').get().value
+    $tdColor.textContent = new DOM('[data-js="color"]').get().value
+
+    $tdImage.appendChild($image);
+    $tr.appendChild($tdImage);
+    $tr.appendChild($tdBrand);
+    $tr.appendChild($tdYear);
+    $tr.appendChild($tdPlate);
+    $tr.appendChild($tdColor);
+
+    console.log('submitted');
+
+    return $fragment.appendChild($tr)
+  }
+
+  function getCompanyInfo() {
+    $companyName.textContent = JSON.parse(ajax.responseText).name
+    $companyPhone.textContent = JSON.parse(ajax.responseText).phone
+  }
+
+  handleEvents()
+
+
+})(window, document, window.DOM);
