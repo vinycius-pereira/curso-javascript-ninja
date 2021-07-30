@@ -40,18 +40,25 @@
   var $companyName = new DOM('[data-js="company-name"]').get();
   var $companyPhone = new DOM('[data-js="company-phone"]').get();
 
-
-
   var $tableCar = new DOM('[data-js="table-body"]').get();
+
+  var $tbody = doc.querySelector('[data-js="table-body"]');
 
 
   var ajax = new XMLHttpRequest();
   ajax.open('GET', 'company.json', true);
   ajax.send();
-  ajax.addEventListener('readystatechange', getCompanyInfo, false);
 
   function handleEvents() {
+    ajax.addEventListener('readystatechange', getCompanyInfo, false);
     new DOM('[data-js="register-car"]').on('submit', handleSubmit, false);
+    new DOM('[data-js="delete-button"]').on('click', handleDeleteRow, false);
+  }
+
+  function handleDeleteRow() {
+    if($tableCar.firstChild)
+      return $tableCar.removeChild($tableCar.lastChild)
+    alert('Não há elementos para ser removido');
   }
 
   function handleSubmit(e) {
@@ -60,7 +67,6 @@
   }
 
   function createNewCar() {
-
     var $fragment = doc.createDocumentFragment();
     var $tr = doc.createElement('tr');
     var $tdImage = doc.createElement('td');
@@ -68,7 +74,9 @@
     var $tdBrand = doc.createElement('td');
     var $tdYear = doc.createElement('td');
     var $tdPlate = doc.createElement('td');
-    var $tdColor = doc.createElement('td');
+    var $tdColor = doc.createElement('td')
+
+
 
     $image.src = new DOM('[data-js="image"]').get().value
     $tdBrand.textContent = new DOM('[data-js="brand-model"]').get().value
@@ -83,10 +91,10 @@
     $tr.appendChild($tdPlate);
     $tr.appendChild($tdColor);
 
-    console.log('submitted');
 
     return $fragment.appendChild($tr)
   }
+
 
   function getCompanyInfo() {
     $companyName.textContent = JSON.parse(ajax.responseText).name
